@@ -28,7 +28,7 @@ def classify():
     # Classify new data
     y_new = loaded_model.predict(X_new)
     letters = ["C","J"]
-    print letters[y_new[0]]
+    print (letters[y_new[0]])
     Sound.speak(letters[y_new[0]])
 
 run()
