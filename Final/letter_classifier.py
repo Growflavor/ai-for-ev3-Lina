@@ -23,11 +23,7 @@ def classify():
     print(str(left_sensor) + " " + str(right_sensor) + " " + str(left_motor_count) + " " + str(right_motor_count))
 
     # Load model and scaler
-    loaded_model = pickle.load(open("""file path""", 'rb'))
-    loaded_scaler = pickle.load(open("""file path""", 'rb'))
-
-    # Apply scaler
-    X_new = loaded_scaler.transform(X_new)
+    loaded_model = pickle.load(open("trained_model.sav", 'rb'))
 
     # Classify new data
     y_new = loaded_model.predict(X_new)
