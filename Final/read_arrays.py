@@ -72,11 +72,3 @@ file = 'trained_model.sav'
 pickle.dump(knn_cv, open(file, 'wb'))
 print(cv_scores)
 print('cv_scores mean:{}'.format(np.mean(cv_scores)))
-
-# knn.fit(X_train, y_train)
-
-# show predictions on the test data
-# print(knn.predict(X_test))
-
-# check accuracy of our model on the test data
-# print(knn.score(X_test, y_test))
