@@ -1,11 +1,8 @@
 import pandas as pd
 import numpy as np
 import os
-from sklearn.model_selection import cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import classification_report,confusion_matrix
+from sklearn.model_selection import train_test_split
 import pickle
 
 
@@ -60,15 +57,21 @@ data_movement = pd.DataFrame(new_new_movements)
 X = data_movement
 y = driven_number
 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+
 # Create KNN classifier
-knn_cv = KNeighborsClassifier(n_neighbors=3)  # 97.5% !!!!
+knn = KNeighborsClassifier(n_neighbors = 3)
 # Fit the classifier to the data
-# train model with cv of 10
+knn.fit(X_train,y_train)
+
+#show predictions on the test data
+print(knn.predict(X_test))
+
+#check accuracy of our model on the test data
+print(knn.score(X_test, y_test))
 # sv_classifier = SVC(kernel='rbf') 65% acc
 # sv_classifier = SVC(kernel='poly', degree=8) 85% acc
-cv_scores = cross_val_score(knn_cv, X, y, cv=10)
-# print each cv score (accuracy) and average them
+
 file = 'trained_model.sav'
-pickle.dump(knn_cv, open(file, 'wb'))
-print(cv_scores)
-print('cv_scores mean:{}'.format(np.mean(cv_scores)))
+pickle.dump(knn, open(file, 'wb'))
+
