@@ -24,4 +24,7 @@ X_new = [[left_sens, right_sens, left_motor, right_motor]]
 
 y_new  = loaded_model.predict(X_new)
 
-print(y_new)
+if y_new == 0:
+    print('C')
+elif y_new ==1:
+    print('J')
